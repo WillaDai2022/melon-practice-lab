@@ -41,8 +41,8 @@ def make_melon_types():
         "musk", 
         "1998", 
         "green",
-        "seedless", 
-        "bestseller", 
+        True, 
+        True, 
         "Muskmelon")
     melon_musk.add_pairing("mint")
     
@@ -50,7 +50,8 @@ def make_melon_types():
         "cas", 
         "2003", 
         "orange", 
-        "has seeds", 
+        False, 
+        False,
         "Casaba")
     melon_casaba.add_pairing("strawberries")
     melon_casaba.add_pairing("mint")
@@ -59,7 +60,8 @@ def make_melon_types():
         "cren",
         "1996",
         "green",
-        "has seeds",
+        False,
+        False,
         "Crenshaw"
     )
     melon_cren.add_pairing("prosciutto")
@@ -68,8 +70,8 @@ def make_melon_types():
         "yw", 
         "2013", 
         "yellow", 
-        "has seeds", 
-        "bestseller", 
+        False, 
+        True, 
         "Yellow Watermelon")
     melon_yellow_w.add_pairing("ice cream")
 
@@ -84,14 +86,23 @@ def make_melon_types():
 def print_pairing_info(melon_types):
     """Prints information about each melon type's pairings."""
 
-    # Fill in the rest
+    for melon_type in melon_types:
+            print(f"{melon_type.name} pairs with")
+            for pairing in melon_type.pairings:
+                print(f"- {pairing}")
+            print()
 
 
 def make_melon_type_lookup(melon_types):
     """Takes a list of MelonTypes and returns a dictionary of melon type by code."""
 
-    # Fill in the rest
+    res = {}
+    for melon_type in melon_types:
+        res[melon_type.code] = melon_type
 
+    for key, value in res.items():
+        print(f"{key}: {value}")
+    return res
 
 ############
 # Part 2   #
@@ -103,12 +114,35 @@ class Melon:
 
     # Fill in the rest
     # Needs __init__ and is_sellable methods
+    def __init__(self, type, shape, color, origin, person):
+        self.melon_type = type
+        self.shape_rating = shape
+        self.color_rating = color
+        self.origin = origin
+        self.person = person
+
+    def is_sellable(melon):
+
+        return self.shape_rating > 5 and self.color_rating > 5 
+        and self.origin != 3
+
 
 
 def make_melons(melon_types):
     """Returns a list of Melon objects."""
+    melon1 = Melon("yw", 8, 7, 2, "Sheila")
+    melon2 = Melon("yw", 3, 4, 2, "Sheila")
+    melon3 = Melon("yw", 9, 8, 2, "Sheila")
+    melon4 = Melon("cas", 10, 6, 35, "Sheila")
+    melon5 = Melon("cren", 8, 9, 35, "Micheal")
+    melon6 = Melon("cren", 8, 2, 35, "Micheal")
+    melon7 = Melon("cren", 2, 3, 4, "Micheal")
+    melon8 = Melon("musk", 6, 7, 4, "Micheal")
+    melon9 = Melon("yw", 7, 10, 3, "Sheila")
+    melon_list = [melon1, melon2, melon3, melon4, melon5, 
+    melon6, melon7, melon8, melon9]
 
-    # Fill in the rest
+    return melon_list
 
 
 def get_sellability_report(melons):
